@@ -1,2 +1,4 @@
 jupyter
-google
+pandas
+numpy
+git+https://github.com/remohammadi/googlesearch
