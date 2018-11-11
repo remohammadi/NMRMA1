@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 import pandas as pd
 import numpy as np
 
@@ -36,3 +38,31 @@ def visualize_reviewed_search_results(reviewed_search_results):
     stop = min([len(x) for x in reviewed_search_results.values()])
     vis_df = pd.DataFrame({k: pd.Series([cell_text(v, i) for i in range(stop)]) for (k, v) in reviewed_search_results.items()})
     return vis_df.style.set_table_styles(TABLE_STYLES).apply(highlight_table, reviewed_search_results=reviewed_search_results, axis=None)
+
+
+def source_analysis_cell_style(df, i, source_score_procontrol, source_score_anticontrol):
+    if len(df) > i:
+        base = 'width: 12em;'
+        url = df.loc[i, 'url']
+        domain = urlparse(url).netloc
+        score_procontrol = source_score_procontrol[domain]
+        score_anticontrol = source_score_anticontrol[domain]
+        return (base + 'background: linear-gradient(to right, transparent 0%'
+        ', transparent {pro:.1f}%, #97c4f0 {pro:.1f}%'
+        ', #97c4f0 50%, #f78787 50%'
+        ', #f78787 {anti:.1f}%, transparent {anti:.1f}%)').format(
+            pro=(50 - score_procontrol * 50), anti=(50 + score_anticontrol * 50))
+    return ''
+
+def highlight_source_analysis_table(data, reviewed_search_results, source_score_procontrol, source_score_anticontrol):
+    stop = min([len(x) for x in reviewed_search_results.values()])
+    return pd.DataFrame(
+        {k: pd.Series([source_analysis_cell_style(
+            v, i, source_score_procontrol, source_score_anticontrol) for i in range(stop)])
+        for (k, v) in reviewed_search_results.items()},
+        index=data.index, columns=data.columns)
+
+def visualize_source_analysis_results(reviewed_search_results, source_score_procontrol, source_score_anticontrol):
+    stop = min([len(x) for x in reviewed_search_results.values()])
+    vis_df = pd.DataFrame({k: pd.Series([cell_text(v, i) for i in range(stop)]) for (k, v) in reviewed_search_results.items()})
+    return vis_df.style.set_table_styles(TABLE_STYLES).apply(highlight_source_analysis_table, reviewed_search_results=reviewed_search_results, source_score_procontrol=source_score_procontrol, source_score_anticontrol=source_score_anticontrol, axis=None)
