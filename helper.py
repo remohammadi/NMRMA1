@@ -1,3 +1,4 @@
+from math import log2
 from urllib.parse import urlparse
 
 import pandas as pd
@@ -42,11 +43,11 @@ def visualize_reviewed_search_results(reviewed_search_results):
 
 def source_analysis_cell_style(df, i, source_score_procontrol, source_score_anticontrol):
     if len(df) > i:
-        base = 'width: 12em;'
+        base = 'width: 20em;'
         url = df.loc[i, 'url']
         domain = urlparse(url).netloc
-        score_procontrol = source_score_procontrol[domain]
-        score_anticontrol = source_score_anticontrol[domain]
+        score_procontrol = log2(1 + source_score_procontrol[domain])
+        score_anticontrol = log2(1 + source_score_anticontrol[domain])
         return (base + 'background: linear-gradient(to right, transparent 0%'
         ', transparent {pro:.1f}%, #97c4f0 {pro:.1f}%'
         ', #97c4f0 50%, #f78787 50%'
