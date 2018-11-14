@@ -13,3 +13,7 @@ jupyter notebook
 ```
 
 Visit http://localhost:8888/notebooks/NMRMA1/Report.ipynb
+
+## Media Bias Reference
+We're using [Media Bias Fact Check](https://mediabiasfactcheck.com/) and
+its database embeded into [its browser extension](https://github.com/JeffreyATW/mbfc_icon).
