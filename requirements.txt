@@ -1,4 +1,5 @@
 jupyter
 pandas
 numpy
-git+https://github.com/remohammadi/googlesearch
+git+https://github.com/MarioVilas/googlesearch
+git+https://github.com/bear/python-twitter
