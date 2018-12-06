@@ -26,6 +26,7 @@ FLAGS = {
     'JP': '🇯🇵',
     'KR': '🇰🇷',
     'MX': '🇲🇽',
+    'NL': '🇳🇱',
     'PK': '🇵🇰',
     'RU': '🇷🇺',
     'SA': '🇸🇦',
@@ -76,6 +77,8 @@ class Account(object):
             self.fetch_timestamp = str(datetime.now())
             if save:
                 self.save()
+            return True
+        return False
 
     def __str__(self):
         text = self.name or self.twitter_handler
