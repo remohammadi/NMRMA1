@@ -7,3 +7,4 @@ networkx
 matplotlib
 scipy
 plotly
+wordcloud
