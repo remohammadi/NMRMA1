@@ -3,3 +3,7 @@ pandas
 numpy
 git+https://github.com/MarioVilas/googlesearch
 git+https://github.com/bear/python-twitter
+networkx
+matplotlib
+scipy
+plotly
