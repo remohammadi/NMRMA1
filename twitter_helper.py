@@ -89,7 +89,7 @@ class Account(object):
     def verbose_title(self):
         text = self.name or self.twitter_handler
         if self.verified:
-            text += '✅'
+            text += '✔︎'
         if self.country_representing in FLAGS:
             text += " ("
             if self.role:
