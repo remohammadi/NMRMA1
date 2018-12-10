@@ -86,6 +86,9 @@ accounts = [
     Account(name="European External Action Service", twitter_handler='eu_eeas',
             country_representing='EU', role='',
             is_personal=False, verified=True),
+    Account(name="EU Council", twitter_handler='EUCouncil',
+            country_representing='EU', role='',
+            is_personal=False, verified=True),
 
     # France
     Account(name="Emmanuel Macron", twitter_handler='EmmanuelMacron',
