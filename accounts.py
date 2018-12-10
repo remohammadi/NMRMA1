@@ -99,9 +99,6 @@ accounts = [
             is_personal=False, verified=True),
 
     # Germany
-    Account(name="Angela Merkel", twitter_handler='angelamerkeicdu',
-            country_representing='DE', role='Chancellor',
-            is_personal=True, verified=False),
     Account(name="Heiko Maas", twitter_handler='heikomaas',
             country_representing='DE', role='Minister for Foreign Affairs',
             is_personal=True, verified=True),

@@ -53,27 +53,27 @@ class Account(object):
 
     def save(self):
         data = {
-            'followings': [f.AsJsonString() for f in self.followings],
-            'tweets': [t.AsJsonString() for t in self.tweets],
+            'followings': [f._json for f in self.followings],
+            'tweets': [t._json for t in self.tweets],
             'fetch_timestamp': self.fetch_timestamp,
         }
         with open(self.filename, 'w') as outfile:
-            json.dump(data, outfile, sort_keys=True, indent=4, separators=(',', ': '))
+            json.dump(data, outfile, sort_keys=True, indent=1, separators=(',', ': '))
 
     def load(self):
         if not exists(self.filename):
             return False
         with open(self.filename, 'r') as infile:
             data = json.load(infile)
-            self.followings = [User.NewFromJsonDict(json.loads(f)) for f in data['followings']]
-            self.tweets = [Status.NewFromJsonDict(json.loads(t)) for t in data['tweets']]
+            self.followings = [User.NewFromJsonDict(f) for f in data['followings']]
+            self.tweets = [Status.NewFromJsonDict(t) for t in data['tweets']]
             self.fetch_timestamp = data['fetch_timestamp']
             return self.fetch_timestamp is not None
 
     def fetch(self, api, from_internet_even_if_local_exists=False, save=True):
         if from_internet_even_if_local_exists or not self.load():
             self.followings = api.GetFriends(screen_name=self.twitter_handler)
-            self.tweets = api.GetUserTimeline(screen_name=self.twitter_handler)
+            self.tweets = api.GetUserTimeline(screen_name=self.twitter_handler, count=200)
             self.fetch_timestamp = str(datetime.now())
             if save:
                 self.save()
