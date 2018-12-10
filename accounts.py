@@ -138,6 +138,9 @@ accounts = [
     Account(name="Javad Zarif", twitter_handler='jzarif',
             country_representing='IR', role='Foreign Minister',
             is_personal=True, verified=True),
+    Account(name="Foreign Ministry", twitter_handler='IRIMFA_EN',
+            country_representing='IR', role='',
+            is_personal=False, verified=False),
     Account(name="Iran at the UN", twitter_handler='iran_un',
             country_representing='IR', role='',
             is_personal=False, verified=False),
@@ -263,6 +266,12 @@ accounts = [
     Account(name="Mevlüt Çavuşoğlu", twitter_handler='MevlutCavusoglu',
             country_representing='TR', role='Minister of Foreign Affairs',
             is_personal=True, verified=True),
+    Account(name="Turkish MFA", twitter_handler='MFATurkey',
+            country_representing='TR', role='',
+            is_personal=False, verified=True),
+    Account(name="Turkish Mission - UN", twitter_handler='Turkey_UN',
+            country_representing='TR', role='',
+            is_personal=False, verified=True),
 
     # United Kingdom
     Account(name="Theresa May", twitter_handler='theresa_may',
