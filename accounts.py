@@ -299,7 +299,7 @@ accounts = [
             is_personal=True, verified=True),
 
     # United States
-    Account(name="Donald J. Trump", twitter_handler='realDonalfTrump',
+    Account(name="Donald J. Trump", twitter_handler='realDonaldTrump',
             country_representing='US', role='President',
             is_personal=True, verified=True),
     Account(name="President Trump", twitter_handler='POTUS',
